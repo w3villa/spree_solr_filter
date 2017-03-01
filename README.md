@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: rails g spree_solr_facet_filter:install
+	  bundel exec rake sunspot:solr:reindex
+	  place partial "<%= render :partial => 'spree/shared/side_filters'%>"	at product index page.
+	  yield javascript at layout file below template  "<%= yield :js %>"
+
 
 ## Development
 
