@@ -9,7 +9,7 @@ module Spree
        end
      	end
 
-			string :product_property_name, references: ProductProperty, multiple: true do
+		string :product_property_name, references: ProductProperty, multiple: true do
 	      product_properties.collect { |p| p.value }.flatten
 	    end
 
