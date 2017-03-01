@@ -21,19 +21,18 @@ module Spree
 			@facet = Sunspot.search(Spree::Product) do
 				if params[:q] && params[:q][:product_property_name]
 					params[:q][:product_property_name].each do |product_property_name|
-		        with(:product_property_name, product_property_name[1])
-		      end
+			        with(:product_property_name, product_property_name[1])
+			     end
 				end	
-
 				if params[:data] 
 					p '-'*100
-						fulltext "*#{params[:data]}*"
+					fulltext "*#{params[:data]}*"
 				end
 					dynamic(:product_property_ids) do
 		        Spree::Property.where(filterable: true).each do |property|
 		          facet(property.id)
-		        end
-			    end
+       	 		end
+		    	end
 			end 
 		end
 	end

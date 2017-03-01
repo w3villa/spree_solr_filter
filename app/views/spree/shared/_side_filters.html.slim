@@ -1,20 +1,23 @@
 = form_tag("/search/facetfilter", :method => :get, :id => "filter") do
-	- Spree::Property.where(filterable: true).each do |property|
-		.col-md-12
-			h4
-				span=property.name
-			.input-group
-				input.form-control type='text' placeholder='Filter'
-			div	
-			- @facet.facet("product_property_ids", property.id).rows.each do |row|	
-				- selected = (params['q']['product_property_name']["#{property.id}"].include? row.value) if params['q'] && params['q']['product_property_name'] && params['q']['product_property_name']["#{property.id}"]
-				.checkbox
-					label
-						= check_box_tag "q[product_property_name][#{property.id}][]", row.value ,selected, class: "filters"
-						=row.value	
-		
+  - Spree::Property.where(filterable: true).each do |property|
+    .col-md-12
+      h4
+        span=property.name
+      .input-group
+        input.form-control type='text' placeholder='Filter'
+      div 
+        -unless @facet.blank?     
+          - @facet.facet("product_property_ids", property.id).rows.each do |row|  
+            =row.value  
+
+            - selected = (params['q']['product_property_name']["#{property.id}"].include? row.value) if params['q'] && params['q']['product_property_name'] && params['q']['product_property_name']["#{property.id}"]
+            .checkbox
+              label
+                = check_box_tag "q[product_property_name][#{property.id}][]", row.value ,selected, class: "filters"
+                =row.value  
+    
 -content_for :js do
-	javascript:
-		$(document).on('click','.filters',function(){
-			$('#filter').submit();
-		});		
+  javascript:
+    $(document).on('click','.filters',function(){
+      $('#filter').submit();
+    });   
