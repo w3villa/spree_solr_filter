@@ -13,7 +13,7 @@ module Spree
 					paginate(:page => params[:page].blank? ? 1 : params[:page], :per_page => 12)
 				end.results
 	      		@taxonomies = Spree::Taxonomy.includes(root: :children)
-			render 'spree/products/solr_search'
+			render 'spree/products/index'
 		end
 
 	private
