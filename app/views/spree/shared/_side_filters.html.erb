@@ -1,0 +1,29 @@
+<%= form_tag("/products", :method => :get, :id => "filter") do %>
+  <% Spree::Property.where(filterable: true).each do |property| %>
+  <div class="col-md-12">
+    <h4>
+      <span><%=property.name%></span>
+    </h4>
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="filter">
+    </div>
+    <div>
+      <% if !@facet.blank? && @facet.facet("product_property_ids", property.id) %>
+        <% @facet.facet("product_property_ids", property.id).rows.each do |row|  %>
+          <% selected = (params['q']['product_property_name']["#{property.id}"].include? row.value) if params['q'] && params['q']['product_property_name'] && params['q']['product_property_name']["#{property.id}"] %>
+          <div class="checkbox">
+            <label>
+              <%=check_box_tag "q[product_property_name][#{property.id}][]", row.value ,selected, class: "filters"%>
+              <%=row.value %>
+            </label>
+          </div>
+        <%end%>
+      <end>
+    </div>
+  </div>
+  <%end%>
+<%end%>
+<%end%>
+
+
+

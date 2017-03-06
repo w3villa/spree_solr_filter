@@ -1,0 +1,19 @@
+<%=form_tag ' ',method: :put do %>
+<table class="table">
+<% @properties.each do |property|%>
+	<tr>
+		<td>
+		<%=check_box_tag 'property[]',property.id,property.filterable == true ? "checked": nil%>
+		</td>
+		<td>
+			<%=property.name%>
+		</td>
+	</tr>
+<%end%>
+	<tr>
+	<td>
+		<button class="btn btn-primary" type="submit"> make filterable</button>
+	</td>
+	</tr>
+</table>
+<%end%>

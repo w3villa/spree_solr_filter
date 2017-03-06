@@ -30,7 +30,9 @@ module Generators
     #      migration_template "migrations/#{filename}.rb", "db/migrate/#{filename}.rb"
     #    end
     #  end
-
+    def add_javascripts
+      append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require solr_filter\n"
+    end
 
 
     def add_migrations

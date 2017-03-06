@@ -12,13 +12,12 @@
     <% if @products.empty? %>
       <h6 class="search-results-title"><%= Spree.t(:no_products_found) %></h6>
     <% else %>
-      <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
+      <%= render :partial => 'spree/shared/products', :locals => { :products => @products } %>
+      
     <% end %>
   </div>
 <% else %>
-  <div data-hook="homepage_products">
-    
+  <div data-hook="homepage_products">    
       <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
-    
   </div>
 <% end %>

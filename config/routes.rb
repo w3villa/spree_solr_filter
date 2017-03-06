@@ -8,5 +8,4 @@ Spree::Core::Engine.add_routes do
   # 		get :facetfilter
   # 	end
   # end
-  get '/search/facetfilter' => 'products#facetfilter'
 end
